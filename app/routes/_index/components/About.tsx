@@ -2,6 +2,7 @@
 import { Form } from "@remix-run/react";
 import { Calendar, ChevronLeft, ChevronRight, MapPin, Search } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import TrendingTours from "./TrendingTours";
 
 export default function About() {
   const locations = [
@@ -116,7 +117,7 @@ export default function About() {
       </nav>
 
       {/* Hero Section */}
-      <div className="relative mx-10 bg-gray-50 rounded-lg shadow-lg">
+      <div className="mx-10 bg-gray-50 rounded-lg shadow-lg space-y-5">
         <div className="max-w-6xl mx-auto flex items-center h-[400px] relative">
           {/* Content Section */}
           <div className="flex-1 flex flex-col px-6 py-12 h-full">
@@ -208,50 +209,13 @@ export default function About() {
         </div>
 
         {/* Search Form */}
-        {/* <Form className=" bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4 ">
-          <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Location
-            </label>
-            <div className="relative">
+        <div className="translate-y-1/2 flex relative p-5 px-10 rounded-lg border">
               <input
                 type="text"
                 placeholder="Enter Your Destination..."
-                className="w-full p-2 border-b focus:outline-none focus:border-black"
+                className="w-full p-2 focus:outline-none text-black rounde-lg shadow-sm bg-white"
               />
-              <MapPin className="absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Activity
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                defaultValue="Bungee Jump"
-                className="w-full p-2 border-b focus:outline-none focus:border-black"
-              />
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400">
-                •
-              </div>
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Date
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Set date"
-                className="w-full p-2 border-b focus:outline-none focus:border-black"
-              />
-              <Calendar className="absolute right-2 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-            </div>
-          </div>
+              
 
           <button
             type="submit"
@@ -259,8 +223,9 @@ export default function About() {
           >
             <Search className="w-5 h-5" />
           </button>
-        </Form> */}
+          </div>
       </div>
+      <TrendingTours />
     </div>
   );
 }
