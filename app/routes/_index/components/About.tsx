@@ -1,6 +1,12 @@
 // app/components/FlightSearch.tsx
 import { Form } from "@remix-run/react";
-import { Calendar, ChevronLeft, ChevronRight, MapPin, Search } from "lucide-react";
+import {
+  Calendar,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
+  Search,
+} from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import TrendingTours from "./TrendingTours";
 
@@ -40,12 +46,68 @@ export default function About() {
     },
   ];
 
+  const tours = [
+    {
+      id: 1,
+      title: "Mountain Hiking Tour",
+      image: "/assets/potala.png",
+      rating: 4.4,
+      places: 12,
+      activities: 3,
+    },
+    {
+      id: 2,
+      title: "Train Tour Skyline",
+      image: "/assets/meditaion.png",
+      rating: 3.8,
+      places: 12,
+      activities: 2,
+    },
+    {
+      id: 4,
+      title: "Mountain Hiking Tour",
+      image: "/assets/potala.png",
+      rating: 4.4,
+      places: 12,
+      activities: 3,
+    },
+    {
+      id: 5,
+      title: "Train Tour Skyline",
+      image: "/assets/meditaion.png",
+      rating: 3.8,
+      places: 12,
+      activities: 2,
+    },
+    {
+      id: 3,
+      title: "Forest Wild Life",
+      image: "/assets/mount-kalash.png",
+      rating: 4.6,
+      places: 12,
+      activities: 3,
+    },
+    {
+      id: 6,
+      title: "Forest Wild Life",
+      image: "/assets/mount-kalash.png",
+      rating: 4.6,
+      places: 12,
+      activities: 3,
+    },
+  ];
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isAutoplay, setIsAutoplay] = useState(true);
   const [direction, setDirection] = useState("right");
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
+  // Filter tours based on the search term
+  const filteredTours = tours.filter((tour) =>
+    tour.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   const handleImageLoad = () => {
     setIsLoading(false);
   };
@@ -76,7 +138,7 @@ export default function About() {
     if (isAutoplay) {
       interval = setInterval(() => {
         handleNext();
-      }, 5000); // Change slide every 5 seconds
+      }, 4000); // Change slide every 5 seconds
     }
     return () => clearInterval(interval);
   }, [isAutoplay, handleNext]);
@@ -96,7 +158,7 @@ export default function About() {
       <nav className="px-6 py-4 bg-white flex items-center justify-between">
         <div className="font-bold text-xl text-black">KTravels</div>
         <div className="flex items-center space-x-6">
-          <a href="#" className="text-gray-600">
+          {/* <a href="#" className="text-gray-600">
             Destination
           </a>
           <a href="#" className="text-gray-600">
@@ -107,12 +169,15 @@ export default function About() {
           </a>
           <button className="p-2">
             <Search className="w-5 h-5 text-gray-600" />
-          </button>
+          </button> */}
         </div>
         <div className="flex items-center space-x-4">
-          <button className="px-4 py-2 bg-black text-white rounded-full">
+          <a
+            href="#footer"
+            className="px-4 py-2 bg-black text-white rounded-full"
+          >
             Contact us
-          </button>
+          </a>
         </div>
       </nav>
 
@@ -133,7 +198,9 @@ export default function About() {
                 {currentLocation.name}
               </h1>
               <div className="flex items-center space-x-2 mb-8">
-                <span className="text-lg text-gray-400">{currentLocation.temperature}</span>
+                <span className="text-lg text-gray-400">
+                  {currentLocation.temperature}
+                </span>
                 <span className="text-gray-500">
                   {currentLocation.weatherDesc}
                 </span>
@@ -209,23 +276,24 @@ export default function About() {
         </div>
 
         {/* Search Form */}
-        <div className="translate-y-1/2 flex relative p-5 px-10 rounded-lg border">
-              <input
-                type="text"
-                placeholder="Enter Your Destination..."
-                className="w-full p-2 focus:outline-none text-black rounde-lg shadow-sm bg-white"
-              />
-              
+        <div className="translate-y-1/2 flex items-center justify-center space-x-2 relative px-10">
+          <input
+            type="text"
+            placeholder="Search Your Destination..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full h-10 px-5 py-10 text-md focus:outline-none text-black rounded-lg shadow-sm bg-white"
+          />
 
           <button
             type="submit"
-            className="mt-6 p-4 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+            className="p-4 bg-gray-700 text-white rounded-full hover:bg-gray-800 transition-colors"
           >
             <Search className="w-5 h-5" />
           </button>
-          </div>
+        </div>
       </div>
-      <TrendingTours />
+      <TrendingTours tours={filteredTours} />
     </div>
   );
 }
