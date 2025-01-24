@@ -182,10 +182,10 @@ export default function About() {
       </nav>
 
       {/* Hero Section */}
-      <div className="mx-10 bg-gray-50 rounded-lg shadow-lg space-y-5">
-        <div className="max-w-6xl mx-auto flex items-center h-[400px] relative">
+      <div className="mx-2 md:mx-10 bg-gray-50 rounded-lg shadow-lg space-y-5 ">
+        <div className="max-w-6xl mx-auto flex max-sm:flex-col-reverse h-[400px] relative">
           {/* Content Section */}
-          <div className="flex-1 flex flex-col px-6 py-12 h-full">
+          <div className="flex-1 flex flex-col px-6 py-4 sm:py-12 h-full">
             <div
               className={`flex-1 flex-shrink transition-opacity duration-500 ${
                 isTransitioning ? "opacity-0" : "opacity-100"
@@ -207,7 +207,7 @@ export default function About() {
               </div>
             </div>
 
-            <div className="flex-1 flex space-x-4 mb-8 items-center">
+            <div className="flex-1 flex space-x-4 items-center">
               <button
                 className="p-2 border rounded-full hover:bg-gray-100 transition-colors"
                 onClick={handlePrevious}
@@ -254,7 +254,7 @@ export default function About() {
           </div>
 
           {/* Image Section */}
-          <div className="flex-1 h-full relative overflow-hidden rounded-r-lg">
+          <div className="flex-1 h-full relative overflow-hidden rounded-t-lg sm:rounded-r-lg">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
                 <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin" />
@@ -276,13 +276,13 @@ export default function About() {
         </div>
 
         {/* Search Form */}
-        <div className="translate-y-1/2 flex items-center justify-center space-x-2 relative px-10">
+        <div className="translate-y-1/2 flex items-center justify-center space-x-2 relative md:px-10 p-2">
           <input
             type="text"
             placeholder="Search Your Destination..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full h-10 px-5 py-10 text-md focus:outline-none text-black rounded-lg shadow-sm bg-white"
+            className="w-full h-10 px-5 py-6 md:py-10 text-md focus:outline-none text-black rounded-lg shadow-sm bg-white"
           />
 
           <button
